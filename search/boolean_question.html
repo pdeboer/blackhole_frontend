@@ -1,0 +1,15 @@
+                            <p>{{question}}<a style="text-decoration: none; color: black;" href="#" tooltip="{{dynamicTooltip}}"> {{dynamicTooltipText}}<span class="glyphicon glyphicon-question-sign" aria-hidden="true"></a></p>
+                            <form ng-submit="submit()">
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="quest" name="quest" id="yes" value="yes"> yes</label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="quest" name="quest" id="no" value="no"> no</label>
+                                <br />
+                                <br />
+                                <input type="hidden" ng-model="ipAdress" name="ipAdress" id="ipAdress" value={{ipAdress}} />
+                                <input type="hidden" ng-model="uuid" name="uuid" id="uuid" value={{uuid}} />
+                                <input type="hidden" ng-model="questionId" name="questionId" id="questionId" value={{questionId}} />
+                                <input type="hidden" ng-model="coordinateId" name="coordinatesId" id="coordinatesId" value={{coordinatesId}} />
+                                <button type="submit" class="btn btn-lg btn-primary">Send</button>
+                            </form>
+                            <br />

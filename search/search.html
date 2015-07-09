@@ -1,0 +1,101 @@
+<div class="container">
+    <div class="joyRide" ng-controller="introCtrl" ng-hide="dismiss">
+        <div class="hide" ng-joy-ride="startJoyRide" config="config" on-finish="onFinish()" on-skip="onFinish()"></div>
+        <div style="font-size:22px;" class="alert alert-danger" role="alert">
+            <button type="button" ng-click="dismissBanner()" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span>
+            </button>
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">New here?:</span> If you are new to the topic, check out the <a ng-click="start()" href="">Tour</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="box">
+
+            <div class="col-lg-12">
+                <hr>
+                <h2 class="intro-text text-center">Start <strong>Searching</strong></h2>
+                <hr>
+            </div>
+
+            <div ng-app="search">
+                <div ng-controller="SearchCtrl">
+                    <div class="col-md-6" id="picture">
+                        <a href="#" ng-click="openLightboxModal(images)"><img class="imagedropshadow" style="max-width: 500px;" ng-src="{{onEditChangeResult}}" /></a>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div id="task" class="question dropshadowclass" style="text-align: center;" ng-include src="template.url">
+
+                        </div>
+                        <br />
+                        <br />
+                        <div class="tools dropshadowclass" style="text-align: center; font-size: 1.5em">
+                            <p>Tools:</p>
+                            <div style="margin-right: 60px; margin-left: 60px;">
+                                <div style="margin-right: 20px; margin-left: 20px;" id="tools_zoom">
+                                    <label for=fader>Picture Scale</label>
+                                    <input type=range min="1" max="13" id="fader" step="1" list="slider" ng-model="editValue" ng-change="onEditChange()" />
+                                    <datalist id="slider">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                    </datalist>
+                                </div>
+                                <!--
+<label>Check1:<input type="checkbox" ng-model="check1Selected" ng-change="onCheckBoxChange()" /></label>!-->
+                                <div id="tools_style">
+                                    <label>
+                                        <input type="radio" ng-model="radioValue" value="normal" ng-change="onRadioChange()" /> normal</label>
+                                    <label>
+                                        <input type="radio" ng-model="radioValue" value="inverted" ng-change="onRadioChange()" /> inverted</label>
+                                    <label>
+                                        <input type="radio" ng-model="radioValue" value="point" ng-change="onRadioChange()" /> point</label>
+                                </div>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                    See on SDSS Homepage
+                                </button>
+                                <br />
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">SDSS Homepage extract</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <iframe src="{{sdssUrl | trustAsResourceUrl}}"></iframe>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+
+                        </div>
+
+                        <div id="finish" class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- /.container -->

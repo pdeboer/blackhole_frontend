@@ -1,0 +1,37 @@
+{
+  "name": "Blackhole Chaser",
+  "version": "1.0.0",
+  "homepage": "http://ddis.ifi.uzh.ch",
+  "authors": [
+    "Martin Gontovnikas <david.pinezich@gmail.com>"
+  ],
+  "description": "Blackhole Chaser",
+  "main": "app.js",
+  "keywords": [
+    "chaser",
+    "blackhole chaser",
+    "blackhole"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "angularjs": "~1.3",
+    "bootstrap": "~3.2.0",
+    "font-awesome": "~4.2.0",
+    "ui-router": "~0.2.11",
+    "angular-jwt": "~0.0.4",
+    "a0-angular-storage": "~0.0.6",
+    "typekit-load": "~0.1.2",
+    "angular-ui-router": "~0.2.11",
+    "angular-bootstrap": "~0.13.0",
+    "angular-bootstrap-lightbox": "~0.6.1",
+    "ng-joyride": "~0.1.15"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ]
+}
