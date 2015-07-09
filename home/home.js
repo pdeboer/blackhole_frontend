@@ -9,11 +9,11 @@ angular.module( 'pplibdataanalyzer_frontend.home', [
     controller: 'HomeCtrl',
     templateUrl: 'home/home.html',
     data: {
-      requiresLogin: true
+      requiresLogin: false
     }
   });
 })
-.controller( 'HomeCtrl', function HomeController( $scope, $http, store, jwtHelper) {
+.controller( 'HomeCtrl', function HomeController($scope) {
 
  $scope.myInterval = 5000;
   var slides = $scope.slides = [
