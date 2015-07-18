@@ -1,4 +1,17 @@
-    <h4>Rate this Galaxy:</h4>
+<div ng-controller="RateCtrl">
+		<div id="commentContent" ng-hide="isRated">
+<form ng-submit="submit()">
+
+<h4>Rate this Galaxy:</h4>
 <p style="font-size: 18px;">How challenging was it to solve this Galaxy, this is not a mandatory task and you are able to skip it.</p>
-    <rating style="font-size: 30px;" ng-model="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating><br />
-<button type="submit" class="btn btn-lg btn-primary">Skip</button><br /><br />
+<label for="rating">Rating:</label><br />
+<rating id="rating" style="font-size: 30px;" ng-model="rating" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating><br />
+<label for="comment">Comment:</label><br />
+<textarea style="width: 80%; margin: 0 auto;" ng-model="comment" class="form-control" rows="5" id="comment"></textarea><br />
+<button type="submit" class="btn btn-lg btn-primary">Rate</button><br /><br />
+
+</form>
+</div>
+<div id="commentThankYou" ng-show="isRated">Thank you for rating</div>
+
+</div>

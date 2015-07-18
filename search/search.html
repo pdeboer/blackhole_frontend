@@ -34,7 +34,7 @@
                             <p>Tools:</p>
                             <div style="margin-right: 60px; margin-left: 60px;">
                                 <div style="margin-right: 20px; margin-left: 20px;" id="tools_zoom">
-                                    <label for=fader>Picture Scale</label>
+                                    <label for=fader>Image Scale</label>
                                     <input type=range min="1" max="13" id="fader" step="1" list="slider" ng-model="editValue" ng-change="onEditChange()" />
                                     <datalist id="slider">
                                         <option value="1">1</option>
@@ -63,18 +63,21 @@
                                         <input type="radio" ng-model="radioValue" value="point" ng-change="onRadioChange()" /> point</label>
                                 </div>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#sdssHomepage">
                                     See on SDSS Homepage
                                 </button>
+                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#rateGalaxy">
+                                   Rate this Galaxy!
+                                </button><br />
                                 <br />
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal fade" id="sdssHomepage" tabindex="-1" role="dialog" aria-labelledby="sdssHomepageLabel">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">SDSS Homepage extract</h4>
+                                                <h4 class="modal-title" id="sdssHomepageLabel">SDSS Homepage extract</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <iframe src="{{sdssUrl | trustAsResourceUrl}}"></iframe>
@@ -85,6 +88,22 @@
                                         </div>
                                     </div>
                                 </div>
+                             <div class="modal fade" id="rateGalaxy" tabindex="-1" role="dialog" aria-labelledby="rateGalaxyLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="rateGalaxyLabel">Rate this Galaxy</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div id="task" class="question" style="text-align: center;" ng-include src="rateTemplate.url">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                
                                 <br />
                             </div>
 

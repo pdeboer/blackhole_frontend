@@ -11,6 +11,12 @@ angular.module('pplibdataanalyzer_frontend.search', [
                     return $sce.trustAsResourceUrl(val);
                 };
             }])
+            
+        .filter('to_trusted', ['$sce', function($sce){
+        return function(text) {
+            return $sce.trustAsHtml(text);
+        };
+    		}])
 
 
         .config(function ($stateProvider) {
@@ -27,10 +33,12 @@ angular.module('pplibdataanalyzer_frontend.search', [
             $rootScope.image = "";
         })
 
-        .controller('SearchCtrl', function HomeController($scope, $rootScope, $http, store, jwtHelper, $state) {
-
+		.controller('RateCtrl', function HomeController($scope, $rootScope, $http, store, jwtHelper, $state, $location) {
+			    
+			    $scope.isRated = false;
+			  
             // Rating 
-            $scope.rate = 7;
+            $scope.rate = 0;
             $scope.max = 10;
             $scope.isReadonly = false;
 
@@ -38,6 +46,35 @@ angular.module('pplibdataanalyzer_frontend.search', [
                 $scope.overStar = value;
                 $scope.percent = 100 * (value / $scope.max);
             };
+
+			     
+			     $scope.submit = function () {
+                var msg = {
+                    sdss_id: $rootScope.coordinatesId,
+                    set_id: 1,
+                    rating: $scope.rating,
+                    comment: $scope.comment,
+                    ip: $rootScope
+                };
+                //console.log(angular.toJson(msg));
+                $http.post('/comment', angular.toJson(msg)).
+                        success(function (data, status, headers, config) {
+                            // this callback will be called asynchronously
+                            // when the response is available
+                        }).
+                        error(function (data, status, headers, config) {
+                            // called asynchronously if an error occurs
+                            // or server returns response with an error status.
+                        }).then(function (response) {
+						$scope.isRated = true;
+                });
+
+
+            };
+			
+ 		})
+
+        .controller('SearchCtrl', function HomeController($scope, $rootScope, $http, store, jwtHelper, $state, $location) {
 
             // Event handlers
             $scope.onEditChange = function () {
@@ -76,8 +113,6 @@ angular.module('pplibdataanalyzer_frontend.search', [
 
             $scope.submit = function () {
 
-
-
                 var msg = {
                     uuid: store.get('jwt'),
                     coordinates_id: this.coordinatesId,
@@ -95,6 +130,7 @@ angular.module('pplibdataanalyzer_frontend.search', [
                             // called asynchronously if an error occurs
                             // or server returns response with an error status.
                         }).then(function (response) {
+	                        $location.path('/search');
                     window.location.reload(false);
 
                 });
@@ -135,6 +171,7 @@ angular.module('pplibdataanalyzer_frontend.search', [
 
 
                         $scope.ipAdress = data.ip;
+                        $rootScope.ipAdress = data.ip;
                         $http.post("/daemon/nextAction", {
                             jwt: $scope.jwt,
                             ip: data.ip
@@ -144,15 +181,14 @@ angular.module('pplibdataanalyzer_frontend.search', [
 
                                     // iframe
                                     $scope.sdssUrl = "http://skyserver.sdss.org/dr7/en/tools/explore/obj.asp?ra=" + data.return[0].ra + "&dec=" + data.return[0].dec;
-                                    if (data.return[0].answer === 'Rating') {
-                                        $scope.template = $scope.templates[1];
-                                    } else {
-                                        $scope.template = $scope.templates[0];
-                                    }
+									$scope.rateTemplate = $scope.templates[1];
+                                    $scope.template = $scope.templates[0];
+                                    
                                     //var image = "588017567101026437";
-
+    
                                     // Tooltips
-                                    $scope.dynamicTooltip = data.return[0].tooltip;
+                                    //$scope.dynamicTooltip = data.return[0].tooltip;
+                                    $scope.taskExample  = data.return[0].tooltip;
 
                                     $rootScope.image = data.return[0].sdss_id;
                                     $rootScope.imageUrl =
@@ -160,6 +196,7 @@ angular.module('pplibdataanalyzer_frontend.search', [
                                     $scope.question = data.return[0].question;
 
                                     $scope.coordinatesId = data.return[0].sdss_id;
+                                    $rootScope.coordinatesId = parseInt(data.return[0].sdss_id);
                                     $scope.questionId = data.return[0].question_id;
 
                                     // Lightbox

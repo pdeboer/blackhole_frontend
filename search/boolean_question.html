@@ -1,4 +1,20 @@
-                            <p>{{question}}<a style="text-decoration: none; color: black;" href="#" tooltip="{{dynamicTooltip}}"> {{dynamicTooltipText}}<span class="glyphicon glyphicon-question-sign" aria-hidden="true"></a></p>
+                            <p>{{question}} <a href="#" data-toggle="modal" data-target="#questionModal">see example</a></p>
+	                            <div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="questionModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="questionModalLabel">See example</h4>
+                                            </div>
+                                            <div class="modal-body" >
+                                             <div ng-bind-html="taskExample | to_trusted"></div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             <form ng-submit="submit()">
                                 <label class="radio-inline">
                                     <input type="radio" ng-model="quest" name="quest" id="yes" value="yes"> yes</label>
