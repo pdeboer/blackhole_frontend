@@ -74,7 +74,7 @@ angular.module('pplibdataanalyzer_frontend.search', [
 			
  		})
 
-        .controller('SearchCtrl', function HomeController($scope, $rootScope, $http, store, jwtHelper, $state, $location) {
+        .controller('SearchCtrl', function HomeController($scope, $rootScope, $http, store, jwtHelper, $state, $location, Lightbox) {
 
             // Event handlers
             $scope.onEditChange = function () {
@@ -108,6 +108,10 @@ angular.module('pplibdataanalyzer_frontend.search', [
                     test3 = test3 + "/";
                 }
                 $scope.onEditChangeResult = "/images/" + test + "/" + test3 + $rootScope.image + ".png";
+                
+                       $rootScope.openLightboxModal = function (images) {
+                                        Lightbox.openModal(images, test);
+                                    };
             };
 
 
@@ -201,6 +205,29 @@ angular.module('pplibdataanalyzer_frontend.search', [
 
                                     // Lightbox
                                     $scope.images = [
+	                                                                            {
+                                            'url': "/images/1/" + $rootScope.image + ".png"
+                                        },
+                                                                                {
+                                            'url': "/images/2/" + $rootScope.image + ".png"
+                                            },  
+                                                                                {
+                                            'url': "/images/3/" + $rootScope.image + ".png"
+                                        },
+                                                                                {
+                                            'url': "/images/4/" + $rootScope.image + ".png"
+                                        },
+                                                                                {
+                                            'url': "/images/5/" + $rootScope.image + ".png"
+                                        },
+                                                                                {
+                                            'url': "/images/6/" + $rootScope.image + ".png"
+                                        },
+                                        {
+                                            'url': "/images/7/" + $rootScope.image + ".png",
+                                            'caption': "You can also change the shown picture with your Arrow Keys"
+                                        },
+                                        
                                         {
                                             'url': "/images/7/" + $rootScope.image + ".png",
                                             'caption': "You can also change the shown picture with your Arrow Keys"
@@ -226,8 +253,8 @@ angular.module('pplibdataanalyzer_frontend.search', [
                                         }
                                     ];
 
-                                    $scope.openLightboxModal = function (images) {
-                                        Lightbox.openModal(images, 0);
+                                    $rootScope.openLightboxModal = function (images) {
+                                        Lightbox.openModal(images, 7);
                                     };
 
 
