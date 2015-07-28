@@ -11,12 +11,12 @@ angular.module('pplibdataanalyzer_frontend.search', [
                     return $sce.trustAsResourceUrl(val);
                 };
             }])
-            
-        .filter('to_trusted', ['$sce', function($sce){
-        return function(text) {
-            return $sce.trustAsHtml(text);
-        };
-    		}])
+
+        .filter('to_trusted', ['$sce', function ($sce) {
+                return function (text) {
+                    return $sce.trustAsHtml(text);
+                };
+            }])
 
 
         .config(function ($stateProvider) {
@@ -33,10 +33,10 @@ angular.module('pplibdataanalyzer_frontend.search', [
             $rootScope.image = "";
         })
 
-		.controller('RateCtrl', function HomeController($scope, $rootScope, $http, store, jwtHelper, $state, $location) {
-			    
-			    $scope.isRated = false;
-			  
+        .controller('RateCtrl', function HomeController($scope, $rootScope, $http, store, jwtHelper, $state, $location) {
+
+            $scope.isRated = false;
+
             // Rating 
             $scope.rate = 0;
             $scope.max = 10;
@@ -47,8 +47,8 @@ angular.module('pplibdataanalyzer_frontend.search', [
                 $scope.percent = 100 * (value / $scope.max);
             };
 
-			     
-			     $scope.submit = function () {
+
+            $scope.submit = function () {
                 var msg = {
                     sdss_id: $rootScope.coordinatesId,
                     set_id: 1,
@@ -66,13 +66,13 @@ angular.module('pplibdataanalyzer_frontend.search', [
                             // called asynchronously if an error occurs
                             // or server returns response with an error status.
                         }).then(function (response) {
-						$scope.isRated = true;
+                    $scope.isRated = true;
                 });
 
 
             };
-			
- 		})
+
+        })
 
         .controller('SearchCtrl', function HomeController($scope, $rootScope, $http, store, jwtHelper, $state, $location, Lightbox) {
 
@@ -108,10 +108,10 @@ angular.module('pplibdataanalyzer_frontend.search', [
                     test3 = test3 + "/";
                 }
                 $scope.onEditChangeResult = "/images/" + test + "/" + test3 + $rootScope.image + ".png";
-                
-                       $rootScope.openLightboxModal = function (images) {
-                                        Lightbox.openModal(images, test);
-                                    };
+
+                $rootScope.openLightboxModal = function (images) {
+                    Lightbox.openModal(images, test);
+                };
             };
 
 
@@ -134,7 +134,7 @@ angular.module('pplibdataanalyzer_frontend.search', [
                             // called asynchronously if an error occurs
                             // or server returns response with an error status.
                         }).then(function (response) {
-	                        $location.path('/search');
+                    $location.path('/search');
                     window.location.reload(false);
 
                 });
@@ -181,22 +181,40 @@ angular.module('pplibdataanalyzer_frontend.search', [
                             ip: data.ip
                         }).
                                 success(function (data, status, headers, config) {
+                                    
+                                    
+                                    // Get Spectras
+                                    alert('/spectras/' + data.return[0].sdss_id);
+                                    $http.get('/spectras/' + data.return[0].sdss_id).
+                                        success(function(data, status, headers, config) {
+                                            alert(data);
+                                          // this callback will be called asynchronously
+                                          // when the response is available
+                                        }).
+                                        error(function(data, status, headers, config) {
+                                          // called asynchronously if an error occurs
+                                          // or server returns response with an error status.
+                                        });
+                                    
+                                    
+                                    
+                                    
                                     $scope.action = data;
 
                                     // iframe
                                     $scope.sdssUrl = "http://skyserver.sdss.org/dr7/en/tools/explore/obj.asp?ra=" + data.return[0].ra + "&dec=" + data.return[0].dec;
-									$scope.rateTemplate = $scope.templates[1];
+                                    $scope.rateTemplate = $scope.templates[1];
                                     $scope.template = $scope.templates[0];
-                                    
+
                                     //var image = "588017567101026437";
-    
+
                                     // Tooltips
                                     //$scope.dynamicTooltip = data.return[0].tooltip;
-                                    $scope.taskExample  = data.return[0].tooltip;
+                                    $scope.taskExample = data.return[0].tooltip;
 
                                     $rootScope.image = data.return[0].sdss_id;
                                     $rootScope.imageUrl =
-                                            $scope.onEditChangeResult = "/images/7/small/" + $rootScope.image + ".png";
+                                    $scope.onEditChangeResult = "/images/7/small/" + $rootScope.image + ".png";
                                     $scope.question = data.return[0].question;
 
                                     $scope.coordinatesId = data.return[0].sdss_id;
@@ -205,29 +223,28 @@ angular.module('pplibdataanalyzer_frontend.search', [
 
                                     // Lightbox
                                     $scope.images = [
-	                                                                            {
+                                        {
                                             'url': "/images/1/" + $rootScope.image + ".png"
                                         },
-                                                                                {
+                                        {
                                             'url': "/images/2/" + $rootScope.image + ".png"
-                                            },  
-                                                                                {
+                                        },
+                                        {
                                             'url': "/images/3/" + $rootScope.image + ".png"
                                         },
-                                                                                {
+                                        {
                                             'url': "/images/4/" + $rootScope.image + ".png"
                                         },
-                                                                                {
+                                        {
                                             'url': "/images/5/" + $rootScope.image + ".png"
                                         },
-                                                                                {
+                                        {
                                             'url': "/images/6/" + $rootScope.image + ".png"
                                         },
                                         {
                                             'url': "/images/7/" + $rootScope.image + ".png",
                                             'caption': "You can also change the shown picture with your Arrow Keys"
                                         },
-                                        
                                         {
                                             'url': "/images/7/" + $rootScope.image + ".png",
                                             'caption': "You can also change the shown picture with your Arrow Keys"
