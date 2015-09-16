@@ -224,25 +224,27 @@ angular.module('pplibdataanalyzer_frontend.search', [
                                     // Lightbox
                                     $scope.images = [
                                         {
-                                            'url': "/images/1/" + $rootScope.image + ".png"
+                                            'url': "/images/1/" + $rootScope.image + ".png",
+                                            'caption': "You can also change the shown picture with your Arrow Keys"                                            
                                         },
                                         {
-                                            'url': "/images/2/" + $rootScope.image + ".png"
+                                            'url': "/images/2/" + $rootScope.image + ".png",
+                                            'caption': "You can also change the shown picture with your Arrow Keys"                                    
                                         },
                                         {
-                                            'url': "/images/3/" + $rootScope.image + ".png"
+                                            'url': "/images/3/" + $rootScope.image + ".png",
+                                            'caption': "You can also change the shown picture with your Arrow Keys"                                          
                                         },
                                         {
-                                            'url': "/images/4/" + $rootScope.image + ".png"
+                                            'url': "/images/4/" + $rootScope.image + ".png",
+                                            'caption': "You can also change the shown picture with your Arrow Keys"                                            
                                         },
                                         {
-                                            'url': "/images/5/" + $rootScope.image + ".png"
+                                            'url': "/images/5/" + $rootScope.image + ".png",
+                                            'caption': "You can also change the shown picture with your Arrow Keys"                                            
                                         },
                                         {
-                                            'url': "/images/6/" + $rootScope.image + ".png"
-                                        },
-                                        {
-                                            'url': "/images/7/" + $rootScope.image + ".png",
+                                            'url': "/images/6/" + $rootScope.image + ".png",
                                             'caption': "You can also change the shown picture with your Arrow Keys"
                                         },
                                         {
@@ -250,28 +252,17 @@ angular.module('pplibdataanalyzer_frontend.search', [
                                             'caption': "You can also change the shown picture with your Arrow Keys"
                                         },
                                         {
-                                            'url': "/images/8/" + $rootScope.image + ".png"
+                                            'url': "/images/7/" + $rootScope.image + ".png",
+                                            'caption': "You can also change the shown picture with your Arrow Keys"
                                         },
                                         {
-                                            'url': "/images/9/" + $rootScope.image + ".png"
-
-                                        },
-                                        {
-                                            'url': "/images/10/" + $rootScope.image + ".png"
-                                        },
-                                        {
-                                            'url': "/images/11/" + $rootScope.image + ".png"
-                                        },
-                                        {
-                                            'url': "/images/12/" + $rootScope.image + ".png"
-                                        },
-                                        {
-                                            'url': "/images/13/" + $rootScope.image + ".png"
+                                            'url': "/images/8/" + $rootScope.image + ".png",
+                                            'caption': "You can also change the shown picture with your Arrow Keys"                                          
                                         }
                                     ];
 
                                     $rootScope.openLightboxModal = function (images) {
-                                        Lightbox.openModal(images, 7);
+                                        Lightbox.openModal(images, 1);
                                     };
 
 
