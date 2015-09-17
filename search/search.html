@@ -35,9 +35,9 @@
                             <div style="margin-right: 60px; margin-left: 60px;">
                                 <div style="margin-right: 20px; margin-left: 20px;" id="tools_zoom">
                                     <label for=fader>Image Scale</label>
-                                    <input type=range min="1" max="13" id="fader" step="1" list="slider" ng-model="editValue" ng-change="onEditChange()" />
+                                    <input value="1" type=range min="1" max="8" id="fader" step="1" list="slider" ng-model="editValue" ng-change="onEditChange()" />
                                     <datalist id="slider">
-                                        <option value="1">1</option>
+                                        <option value="1" selected="selected">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
@@ -45,11 +45,6 @@
                                         <option value="6">6</option>
                                         <option value="7">7</option>
                                         <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
                                     </datalist>
                                 </div>
                                 <!--
@@ -57,6 +52,8 @@
                                 <div id="tools_style">
                                     <label>
                                         <input type="radio" ng-model="radioValue" value="normal" ng-change="onRadioChange()" /> normal</label>
+                                    <label>
+                                        <input type="radio" ng-model="radioValue" value="small" ng-change="onRadioChange()" /> clean</label>
                                     <label>
                                         <input type="radio" ng-model="radioValue" value="inverted" ng-change="onRadioChange()" /> inverted</label>
                                     <label>

@@ -77,6 +77,7 @@ angular.module('pplibdataanalyzer_frontend.search', [
         .controller('SearchCtrl', function HomeController($scope, $rootScope, $http, store, jwtHelper, $state, $location, Lightbox) {
 
             // Event handlers
+            $scope.editValue = 2;
             $scope.onEditChange = function () {
                 $scope.changeHandler($scope.editValue, '', $scope.radioValue);
             };
@@ -99,18 +100,19 @@ angular.module('pplibdataanalyzer_frontend.search', [
             $scope.changeHandler = function (test, test2, test3) {
                 //var image = "588017567101026437";
                 if (!test) {
-                    test = 7;
+                    test = 1;
                 }
 
                 if (test3 === "normal") {
-                    test3 = "small/";
+                    test3 = "crosshair/";
                 } else {
                     test3 = test3 + "/";
                 }
                 $scope.onEditChangeResult = "/images/" + test + "/" + test3 + $rootScope.image + ".png";
 
                 $rootScope.openLightboxModal = function (images) {
-                    Lightbox.openModal(images, test);
+                    
+                    Lightbox.openModal(images, test-1);
                 };
             };
 
@@ -214,7 +216,7 @@ angular.module('pplibdataanalyzer_frontend.search', [
 
                                     $rootScope.image = data.return[0].sdss_id;
                                     $rootScope.imageUrl =
-                                    $scope.onEditChangeResult = "/images/7/small/" + $rootScope.image + ".png";
+                                    $scope.onEditChangeResult = "/images/2/crosshair/" + $rootScope.image + ".png";
                                     $scope.question = data.return[0].question;
 
                                     $scope.coordinatesId = data.return[0].sdss_id;
@@ -245,10 +247,6 @@ angular.module('pplibdataanalyzer_frontend.search', [
                                         },
                                         {
                                             'url': "/images/6/" + $rootScope.image + ".png",
-                                            'caption': "You can also change the shown picture with your Arrow Keys"
-                                        },
-                                        {
-                                            'url': "/images/7/" + $rootScope.image + ".png",
                                             'caption': "You can also change the shown picture with your Arrow Keys"
                                         },
                                         {
