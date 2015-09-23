@@ -1,31 +1,39 @@
-                            <p>{{question}} <a href="#" data-toggle="modal" data-target="#questionModal">see example</a></p>
-	                            <div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="questionModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="questionModalLabel">See example</h4>
-                                            </div>
-                                            <div class="modal-body" >
-                                             <div ng-bind-html="taskExample | to_trusted"></div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <form ng-submit="submit()">
-                                <label class="radio-inline">
-                                    <input type="radio" ng-model="quest" name="quest" id="yes" value="yes"> yes</label>
-                                <label class="radio-inline">
-                                    <input type="radio" ng-model="quest" name="quest" id="no" value="no"> no</label>
-                                <br />
-                                <br />
-                                <input type="hidden" ng-model="ipAdress" name="ipAdress" id="ipAdress" value={{ipAdress}} />
-                                <input type="hidden" ng-model="uuid" name="uuid" id="uuid" value={{uuid}} />
-                                <input type="hidden" ng-model="questionId" name="questionId" id="questionId" value={{questionId}} />
-                                <input type="hidden" ng-model="coordinateId" name="coordinatesId" id="coordinatesId" value={{coordinatesId}} />
-                                <button type="submit" class="btn btn-lg btn-primary">Send</button>
-                            </form>
-                            <br />
+<div style="margin: 0 20px;">
+    <p style="font-size: 2.3em;">Task:</p>
+<p>{{question}} <a href="#" data-toggle="modal" data-target="#questionModal">see example</a></p>
+<div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-labelledby="questionModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="questionModalLabel">See example</h4>
+            </div>
+            <div class="modal-body" >
+                <div ng-bind-html="taskExample | to_trusted"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<form ng-submit="submit()">
+    <div class="boolean_form">
+        <div>
+            <input ng-click="submit()" type="radio" ng-model="quest" name="radio" id="yes" class="radio" value="yes"/>
+            <label for="yes">Yes</label>
+        </div>
+        <div>
+            <input ng-click="submit()" type="radio" ng-model="quest" name="quest" id="no" class="radio" value="no"/>
+            <label for="no">No</label>
+        </div>
+    </div>
+    <br />
+    <input type="hidden" ng-model="ipAdress" name="ipAdress" id="ipAdress" value={{ipAdress}} />
+    <input type="hidden" ng-model="uuid" name="uuid" id="uuid" value={{uuid}} />
+    <input type="hidden" ng-model="questionId" name="questionId" id="questionId" value={{questionId}} />
+    <input type="hidden" ng-model="coordinateId" name="coordinatesId" id="coordinatesId" value={{coordinatesId}} />
+<br /><br />
+</form>
+<br />
+</div>

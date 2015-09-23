@@ -21,12 +21,12 @@
             <div ng-app="search">
                 <div ng-controller="SearchCtrl">
                     <div class="col-md-6" id="picture">
-                        <a href="#" ng-click="openLightboxModal(images)"><img class="imagedropshadow" style="max-width: 500px;" ng-src="{{onEditChangeResult}}" /></a>
-                    </div>
+                        <a href="#" ng-click="openLightboxModal(images)"><img class="imagedropshadow" style="max-width: 600px; width: 100%;" err-SRC="/images/nodata.png" ng-src="{{onEditChangeResult}}" /></a>
+                        <br /><br />
+                        <img class="imagedropshadow" style="max-width: 600px; width: 100%;" ng-src="{{radioImage}}" err-SRC="/images/noradio.png" />
+                    </div> 
                     <div class="col-md-6">
-
                         <div id="task" class="question dropshadowclass" style="text-align: center;" ng-include src="template.url">
-
                         </div>
                         <br />
                         <br />
@@ -58,6 +58,8 @@
                                         <input type="radio" ng-model="radioValue" value="inverted" ng-change="onRadioChange()" /> inverted</label>
                                     <label>
                                         <input type="radio" ng-model="radioValue" value="point" ng-change="onRadioChange()" /> objects with spectra</label>
+                                    <label>
+                                        <input type="radio" ng-model="radioValue" value="xray" ng-change="onRadioChange()" /> X-Ray</label>
                                 </div>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#sdssHomepage">
@@ -70,7 +72,7 @@
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="sdssHomepage" tabindex="-1" role="dialog" aria-labelledby="sdssHomepageLabel">
-                                    <div class="modal-dialog" role="document">
+                                    <div class="sdss_modal modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -105,6 +107,49 @@
                             </div>
 
                         </div>
+
+                        <div id="finish" class="clearfix"></div>
+                    </div>
+                        <br />
+                        <br />
+                        <div class="tools dropshadowclass" style="text-align: center; font-size: 1.5em">
+                            <p>List of Spectras:</p>
+                            <div class="table-responsive">          
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th class="centered">ra</th>
+                              <th class="centered">dec</th>
+                              <th class="centered">spectra</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              <tr ng-repeat="spectra in spectras">
+                                  <td>{{spectra.ra}}</td>
+                                  <td>{{spectra.dec}}</td>
+                                  <td><button ng-click="toggle(spectra.specobjid)" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#seeSpectra">See Spectra</button></td>
+                              </tr>
+                          </tbody>
+                        </table>
+                        </div>
+                        <div class="modal fade" id="seeSpectra" tabindex="-1" role="dialog" aria-labelledby="seeSpectraLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content" style="width: 1200px;">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="rateGalaxyLabel">See Spectra in detail:</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img class="imagedropshadow" ng-src="{{currentSpectra}}" />
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                                
+                                <br />
+                            </div>
 
                         <div id="finish" class="clearfix"></div>
                     </div>
