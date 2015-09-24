@@ -23,7 +23,7 @@
                     <div class="col-md-6" id="picture">
                         <a href="#" ng-click="openLightboxModal(images)"><img class="imagedropshadow" style="max-width: 600px; width: 100%;" err-SRC="/images/nodata.png" ng-src="{{onEditChangeResult}}" /></a>
                         <br /><br />
-                        <img class="imagedropshadow" style="max-width: 600px; width: 100%;" ng-src="{{radioImage}}" err-SRC="/images/noradio.png" />
+                        <!--<img class="imagedropshadow" style="max-width: 600px; width: 100%;" ng-src="{{radioImage}}" err-SRC="/images/noradio.png" /> -->
                     </div> 
                     <div class="col-md-6">
                         <div id="task" class="question dropshadowclass" style="text-align: center;" ng-include src="template.url">
@@ -58,6 +58,8 @@
                                         <input type="radio" ng-model="radioValue" value="inverted" ng-change="onRadioChange()" /> inverted</label>
                                     <label>
                                         <input type="radio" ng-model="radioValue" value="point" ng-change="onRadioChange()" /> objects with spectra</label>
+                                    <label>
+                                        <input type="radio" ng-model="radioValue" value="radio" ng-change="onRadioChange()" /> radio</label>
                                     <label>
                                         <input type="radio" ng-model="radioValue" value="xray" ng-change="onRadioChange()" /> X-Ray</label>
                                 </div>
@@ -133,7 +135,7 @@
                         </table>
                         </div>
                         <div class="modal fade" id="seeSpectra" tabindex="-1" role="dialog" aria-labelledby="seeSpectraLabel">
-                                    <div class="modal-dialog" role="document">
+                                    <div class="modal-dialog" role="document" style="width: 1200px;">
                                         <div class="modal-content" style="width: 1200px;">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

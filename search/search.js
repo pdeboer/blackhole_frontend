@@ -63,9 +63,10 @@ app.controller('RateCtrl', function HomeController($scope, $rootScope, $http, st
     $scope.submit = function () {
         var msg = {
             sdss_id: $rootScope.coordinatesId,
+            uuid: store.get('jwt'),
             set_id: 1,
             rating: $scope.rating,
-            comment: $scope.comment,
+            comment: ($scope.comment) ? $scope.comment : "No comment",
             ip: $rootScope
         };
         //console.log(angular.toJson(msg));
