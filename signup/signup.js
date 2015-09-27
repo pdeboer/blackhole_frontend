@@ -15,11 +15,11 @@ angular.module( 'pplibdataanalyzer_frontend.signup', [
 
   $scope.createUser = function() {
     $http({
-      url: '/',
+      url: '/insertuserregister',
       method: 'POST',
       data: $scope.user
     }).then(function(response) {
-        if(response == "") {
+        if(response.data != "exists already") {
             store.set('jwt', response.data);
             window.location.reload(false);
             $state.go('search');  

@@ -9,24 +9,24 @@
                 </h2>
                 <hr>
                 <p>We are glad to hear about your problems and difficulties, please tell us what happened with the form underneath.</p>
-                <form role="form">
+                <form role="form" ng-submit="submit()">
                     <div class="row">
                         <div class="form-group col-lg-4">
                             <label>Name</label>
-                            <input type="text" class="form-control">
+                            <input ng-model="name" type="text" class="form-control">
                         </div>
                         <div class="form-group col-lg-4">
                             <label>Email Address</label>
-                            <input type="email" class="form-control">
+                            <input ng-model="email" type="email" class="form-control">
                         </div>
                         <div class="form-group col-lg-4">
                             <label>Phone Number</label>
-                            <input type="tel" class="form-control">
+                            <input ng-model="phone" type="tel" class="form-control">
                         </div>
                         <div class="clearfix"></div>
                         <div class="form-group col-lg-12">
                             <label>Message</label>
-                            <textarea class="form-control" rows="6"></textarea>
+                            <textarea ng-model="message" class="form-control" rows="6"></textarea>
                         </div>
                         <div class="form-group col-lg-12">
                             <input type="hidden" name="save" value="contact">

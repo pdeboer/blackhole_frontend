@@ -202,6 +202,9 @@ app.controller('initCtrl', function HomeController($scope, $http, store, jwtHelp
                 }).
                         success(function (data, status, headers, config) {
                             
+                            if(data == "All tasks are done") {
+                                alert("Congratulations, all tasks are done!");
+                            }
                             $scope.action = data;
 
                             // iframe
