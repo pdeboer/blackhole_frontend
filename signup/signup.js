@@ -24,7 +24,7 @@ angular.module( 'pplibdataanalyzer_frontend.signup', [
             window.location.reload(false);
             $state.go('search');  
         } else {
-            alert("login failed");
+            alert("Creation failed, please send an email to david.pinezich@uzh.ch");
         }
 
         

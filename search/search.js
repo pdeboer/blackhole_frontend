@@ -47,7 +47,7 @@ app.directive('errSrc', function () {
 
 app.controller('RateCtrl', function HomeController($scope, $rootScope, $http, store, jwtHelper, $state, $location) {
 
-    $scope.isRated = false;
+    $scope.isRated = $rootScope.isRated;
 
     // Rating 
     $scope.rate = 0;
@@ -67,7 +67,7 @@ app.controller('RateCtrl', function HomeController($scope, $rootScope, $http, st
             set_id: 1,
             rating: $scope.rating,
             comment: ($scope.comment) ? $scope.comment : "No comment",
-            ip: $rootScope
+            ip: this.ipAdress
         };
         //console.log(angular.toJson(msg));
         $http.post('/comment', angular.toJson(msg)).
@@ -88,35 +88,34 @@ app.controller('RateCtrl', function HomeController($scope, $rootScope, $http, st
 });
 
 app.controller('SearchCtrl', function HomeController($scope, $rootScope, $http, store, jwtHelper, $state, $location, Lightbox) {
-
-
+                                
     $scope.toggle = function (spectraId) {
         $scope.currentSpectra = "/images/spectra/" + spectraId + ".png";
     };
 
-
     // Event handlers
     $scope.editValue = 2;
     $scope.onEditChange = function () {
-        $scope.changeHandler($scope.editValue, '', $scope.radioValue);
+        $rootScope.changeHandler($scope.editValue, '', $scope.radioValue);
     };
-
+    
     $scope.onCheckBoxChange = function () {
         var test = 2;
         if ($scope.check1Selected) {
             test = 3;
         }
 
-        $scope.changeHandler('', test, '');
+        $rootScope.changeHandler('', test, '');
     };
 
     $scope.onRadioChange = function () {
 
-        $scope.changeHandler($scope.editValue, '', $scope.radioValue);
+        $rootScope.changeHandler($scope.editValue, '', $scope.radioValue);
     };
 
 
-    $scope.changeHandler = function (test, test2, test3) {
+    $rootScope.changeHandler = function (test, test2, test3) {
+        $scope.radioValue = test3;
         //var image = "588017567101026437";
         if (!test) {
             test = 1;
@@ -140,7 +139,7 @@ app.controller('SearchCtrl', function HomeController($scope, $rootScope, $http, 
 
         var msg = {
             uuid: store.get('jwt'),
-            coordinates_id: this.coordinatesId,
+            sdss_id: this.coordinatesId,
             question_id: parseInt(this.questionId),
             answer: this.quest,
             ip: this.ipAdress
@@ -202,24 +201,7 @@ app.controller('initCtrl', function HomeController($scope, $http, store, jwtHelp
                     ip: data.ip
                 }).
                         success(function (data, status, headers, config) {
-
-
-                            // Get Spectras
-                            //alert('/spectras/' + data.return[0].sdss_id);
-                            $http.get('/spectras/' + data.return[0].sdss_id).
-                                    success(function (data, status, headers, config) {
-                                        //alert(data);
-                                        // this callback will be called asynchronously
-                                        // when the response is available
-                                    }).
-                                    error(function (data, status, headers, config) {
-                                        // called asynchronously if an error occurs
-                                        // or server returns response with an error status.
-                                    });
-
-
-
-
+                            
                             $scope.action = data;
 
                             // iframe
@@ -242,9 +224,16 @@ app.controller('initCtrl', function HomeController($scope, $http, store, jwtHelp
                             $scope.spectras = data.return[0].spectras;
 
                             $scope.coordinatesId = data.return[0].sdss_id;
-                            $rootScope.coordinatesId = parseInt(data.return[0].sdss_id);
+                            $rootScope.coordinatesId = data.return[0].sdss_id;
                             $scope.questionId = data.return[0].question_id;
 
+                            $rootScope.isRated = data.options[0].is_rated;
+                            $rootScope.radioValue = data.options[0].preset;    
+                            
+                            if($rootScope.radioValue !== "sdss") {        
+                                $rootScope.changeHandler(2, '', $rootScope.radioValue);
+                            };
+                            
                             // Lightbox
                             $scope.images = [
                                 {

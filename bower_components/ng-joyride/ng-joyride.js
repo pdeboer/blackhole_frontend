@@ -70,6 +70,7 @@
             this.addClassToCurtain = addClassToCurtain;
             this.shouldDisablePrevious = shouldDisablePrevious;
             this.attachTobody = attachTobody;
+            this.shouldNotStopEvent = config.shouldNotStopEvent || false;
             function _generateTextForNext() {
 
                 if (isEnd) {
@@ -81,6 +82,9 @@
                 }
             }
 
+            if (config.advanceOn) {
+                this.advanceOn = config.advanceOn;
+            }
         }
 
         Element.prototype = (function () {
@@ -105,7 +109,7 @@
             function generate() {
                 $fkEl = $(this.selector);
                 _highlightElement.call(this);
-                handleClicksOnElement();
+                bindAdvanceOn(this);
                 this.addClassToCurtain(this.curtainClass);
                 return _generateHtml.call(this).then(angular.bind(this, _generatePopover)).then(angular.bind(this, _showTooltip));
 
@@ -113,12 +117,34 @@
 
             }
             function stopEvent(event){
-                event.stopPropagation();
-                event.preventDefault();
+                if(this.shouldNotStopEvent){
+
+                } else {
+                    event.stopPropagation();
+                    event.preventDefault();
+                }
+
             }
-            function handleClicksOnElement(){
-                $fkEl.on("click",stopEvent);
+
+            function bindAdvanceOn(step) {
+                if (step.advanceOn) {
+                    return $(step.advanceOn.element).bind(step.advanceOn.event, step.goToNextFn);
+                }
+                if($fkEl){
+                    return $fkEl.on("click", angular.bind(step,stopEvent));
+                }
+
             }
+            function unBindAdvanceOn(step) {
+                if (step.advanceOn) {
+                    return $(step.advanceOn.element).unbind(step.advanceOn.event, step.goToNextFn);
+                }
+                if($fkEl){
+                    return $fkEl.off("click", angular.bind(step,stopEvent));
+                }
+
+            }
+
             function _generateHtml() {
 
                 var promise = this.loadTemplateFn(this.template);
@@ -172,9 +198,10 @@
             function cleanUp() {
                 _unhighlightElement.call(this);
                 if($fkEl){
-                    $fkEl.off("click",stopEvent);
+                    $fkEl.off("click",angular.bind(this,stopEvent));
                     $($fkEl).popover('destroy');
                 }
+                unBindAdvanceOn(this);
 
 
 
@@ -531,6 +558,11 @@
                         }
 
                     });
+
+                    // Listen for events
+                    element.on('joyride:prev', goToPrev);
+                    element.on('joyride:next', goToNext);
+                    element.on('joyride:exit', skipDemo);
                 }
             }
         };
