@@ -24,6 +24,7 @@ angular.module('pplibdataanalyzer_frontend.login', [
                 $state.go('login');
               } else {
                 store.set('jwt', response.data);
+                alert("Login successful");
                 window.location.reload(false);
                 $state.go('search');
               }
