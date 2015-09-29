@@ -231,7 +231,13 @@ app.controller('initCtrl', function HomeController($scope, $http, store, jwtHelp
                             $scope.questionId = data.return[0].question_id;
 
                             $rootScope.isRated = data.options[0].is_rated;
-                            $rootScope.radioValue = data.options[0].preset;    
+                            $rootScope.radioValue = data.options[0].preset; 
+                            
+                            $scope.coordinateRa = data.return[0].ra;
+                            $scope.coordinateDec = data.return[0].dec;
+                            
+                            $scope.completedImages = data.statistics[0].completed;
+                            $scope.completedImagesPercent = data.statistics[0].completed;
                             
                             if($rootScope.radioValue !== "sdss") {        
                                 $rootScope.changeHandler(2, '', $rootScope.radioValue);

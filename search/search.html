@@ -24,6 +24,17 @@
                         <a href="#" ng-click="openLightboxModal(images)"><img class="imagedropshadow" style="max-width: 600px; width: 100%;" err-SRC="/images/nodata.png" ng-src="{{onEditChangeResult}}" /></a>
                         <br /><br />
                         <!--<img class="imagedropshadow" style="max-width: 600px; width: 100%;" ng-src="{{radioImage}}" err-SRC="/images/noradio.png" /> -->
+                        <div>
+                            <h4>Informations about this Image:</h4>
+                                <ul>
+                                    <li><p>Ra: {{coordinateRa}}</p></li>
+                                    <li><p>Dec: {{coordinateDec}}</p></li>
+                                </ul>
+                            <h4>Your progress so far:</h4>
+                                <ul>
+                                    <li><p>Completed Images: {{completedImages}} / 100 ({{completedImages}}%)</p></li>
+                                </ul>
+                        </div>
                     </div> 
                     <div class="col-md-6">
                         <div id="task" class="question dropshadowclass" style="text-align: center;" ng-include src="template.url">
