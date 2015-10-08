@@ -189,16 +189,16 @@ app.controller('initCtrl', function HomeController($scope, $http, store, jwtHelp
     $scope.jwt = store.get('jwt');
     $scope.onCheckBoxChangeResult = "";
     //$scope.decodedJwt = $scope.jwt && jwtHelper.decodeToken($scope.jwt);
-
+    /*
     $http.get('http://ipinfo.io/json').
             success(function (data) {
+*/
 
-
-                $scope.ipAdress = data.ip;
-                $rootScope.ipAdress = data.ip;
+                $scope.ipAdress = "data.ip";
+                $rootScope.ipAdress = "data.ip";
                 $http.post("/daemon/nextAction", {
                     jwt: $scope.jwt,
-                    ip: data.ip
+                    ip: "data.ip"
                 }).
                         success(function (data, status, headers, config) {
                             
@@ -289,9 +289,9 @@ app.controller('initCtrl', function HomeController($scope, $http, store, jwtHelp
                             // called asynchronously if an error occurs
                             // or server returns response with an error status.
                         });
-
+/*
             });
-
+*/
 });
 
 app.controller('introCtrl', function HomeController($scope, store, $templateCache) {
@@ -358,6 +358,30 @@ app.controller('introCtrl', function HomeController($scope, store, $templateCach
             selector: "#tools_style",
             heading: "Tools - Style",
             text: "To get more posibilities, you can select a display style here",
+            placement: "left",
+            scroll: true,
+            elementTemplate: elementTourTemplate,
+        }, {
+            type: "element",
+            selector: "#tools_spectra",
+            heading: "Tools - Spectra",
+            text: "If you have to define <broad spikes> please have a look at the spectras here which are showing you the diagram",
+            placement: "left",
+            scroll: true,
+            elementTemplate: elementTourTemplate,
+        },  {
+            type: "element",
+            selector: "#tools_spectra_click",
+            heading: "Tools - Spectra(2)",
+            text: "By clicking here you should see the spectra",
+            placement: "left",
+            scroll: true,
+            elementTemplate: elementTourTemplate,
+        },  {
+            type: "element",
+            selector: "#tools_rating",
+            heading: "Tools - Rating",
+            text: "If you see something interesting, please let us know with a rating",
             placement: "left",
             scroll: true,
             elementTemplate: elementTourTemplate,

@@ -78,7 +78,7 @@
                                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#sdssHomepage">
                                     See on SDSS Homepage
                                 </button>
-                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#rateGalaxy">
+                                <button id="tools_rating" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#rateGalaxy">
                                    Rate this Galaxy!
                                 </button><br />
                                 <br />
@@ -125,7 +125,7 @@
                     </div>
                         <br />
                         <br />
-                        <div class="tools dropshadowclass" style="text-align: center; font-size: 1.5em">
+                        <div id="tools_spectra" class="tools dropshadowclass" style="text-align: center; font-size: 1.5em">
                             <p>List of Spectras:</p>
                             <div class="table-responsive">          
                         <table class="table">
@@ -140,7 +140,7 @@
                               <tr ng-repeat="spectra in spectras">
                                   <td>{{spectra.ra}}</td>
                                   <td>{{spectra.dec}}</td>
-                                  <td><button ng-click="toggle(spectra.specobjid)" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#seeSpectra">See Spectra</button></td>
+                                  <td><button id="tools_spectra_click" ng-click="toggle(spectra.specobjid)" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#seeSpectra">See Spectra</button></td>
                               </tr>
                           </tbody>
                         </table>
