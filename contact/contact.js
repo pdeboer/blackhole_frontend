@@ -13,7 +13,7 @@ angular.module( 'pplibdataanalyzer_frontend.contact', [
     }
   });
 })
-.controller( 'ContactCtrl', function HomeController( $scope, $http, store, jwtHelper) {
+.controller( 'ContactCtrl', function ContactController( $scope, $http, store, jwtHelper) {
 
   $scope.jwt = store.get('jwt');
   $scope.decodedJwt = $scope.jwt && jwtHelper.decodeToken($scope.jwt);

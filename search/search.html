@@ -5,7 +5,7 @@
             <button type="button" ng-click="dismissBanner()" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span>
             </button>
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">New here?:</span> If you are new to the topic, check out the <a ng-click="start()" href="">Tour</a>
+            <span class="sr-only">New here?:</span> If you are new to the topic, check out the <a ng-joy-ride="startJoyRide" config="config" ng-click="start()" on-finish="onFinish()" on-skip="onFinish()" href="">Tour</a>
         </div>
     </div>
 
@@ -27,10 +27,10 @@
                         <div>
                             <h4>Informations about this Image:</h4>
                                 <ul>
-                                    <li><p>Ra: {{coordinateRa}}</p></li>
-                                    <li><p>Dec: {{coordinateDec}}</p></li>
+                                    <li><p style="margin-bottom: 0px;">RA: {{coordinateRa|limitTo:14}}</p></li>
+                                    <li><p>DEC: {{coordinateDec|limitTo:14}}</p></li>
                                 </ul>
-                            <h4>Your progress so far:</h4>
+                            <h4>Your progress so far in this search:</h4>
                                 <ul>
                                     <li><p>Completed Images: {{completedImages}} / 100 ({{completedImages}}%)</p></li>
                                 </ul>
@@ -131,9 +131,9 @@
                         <table class="table">
                           <thead>
                             <tr>
-                              <th class="centered">ra</th>
-                              <th class="centered">dec</th>
-                              <th class="centered">spectra</th>
+                              <th class="centered">RA</th>
+                              <th class="centered">DEC</th>
+                              <th class="centered">SPECTRA</th>
                             </tr>
                           </thead>
                           <tbody>

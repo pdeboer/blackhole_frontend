@@ -1,41 +1,42 @@
-
 <div class="container">
-
-  <div class="row">
-    <div class="box">
-      <div class="col-lg-12">
-        <hr>
-        <h2 class="intro-text text-center">We want <strong>you</strong> to help - Login</h2>
-        <hr>
-        <p class="center">If you have an account, please sign in here. If not, please use the <a ui-sref="signup()">Register</a> Link.</p>
-        <div class="container">
-          <div class="row">
-              <div class="login jumbotron center-block">
-                <form role="form">
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" class="form-control" ng-model="user.email" id="email" placeholder="Email">
-                  </div>
-                  <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" ng-model="user.password" placeholder="Password">
-                  </div>
-                  <button type="submit" class="btn btn-default" ng-click="login()">Submit</button>
-                </form><br />
-                <a ui-sref="signup()">Click here to Register</a>
-              </div>
-          </div>
-        </div>
-      </div>
+    <div class="row">
+        <div class="box">
+            <div class="col-lg-12" ng-hide="logged">
+                <hr>
+                <h2 class="intro-text text-center">We want <strong>you</strong> to help - Login</h2>
+                <hr>
+                <p class="center">If you have an account, please sign in here. If not, please use the <a ui-sref="signup()">Register</a> Link.</p>
+                <div class="container">
+                    <div class="row">
+                        <div class="login jumbotron center-block">
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control" ng-model="user.email" id="email" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" ng-model="user.password" placeholder="Password">
+                                </div>
+                                <button type="submit" class="btn btn-default" ng-click="login()">Submit</button>
+                            </form><br />
+                            <a ui-sref="signup()">Click here to Register</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12" ng-show="logged">
+                <hr>
+                <h2 class="intro-text text-center">Thank <strong>you</strong> for login</h2>
+                <hr>
+                <div class="container">
+                    <div class="row">
+                        <div class="center-block" style="align: center;">
+                            <a ng-click="redirect()"><button type="button" class="btn btn-lg btn-primary center-block">Let the search begin!</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
     </div>
-  </div>
-
 </div>
-<!-- /.container -->
-
-
-
-
-
-
-

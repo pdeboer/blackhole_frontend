@@ -1,40 +1,37 @@
 <div class="container">
-
-  <div class="row">
-    <div class="box">
-      <div class="col-lg-12">
-        <hr>
-        <h2 class="intro-text text-center">We want <strong>you</strong> to help - Register</h2>
-        <hr>
-        <p class="center">After registering you will be automatically logged in to our service and you will be able to start searching.</p>
-        <div class="container">
-          <div class="row">
-              <div class="login jumbotron center-block">
-                <form role="form">
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" class="form-control" ng-model="user.email" id="email" placeholder="Email">
-                  </div>
-                  <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" ng-model="user.password" placeholder="Password">
-                  </div>
-                                      <div class="form-group">
-                    <label for="lastname">Lastname</label>
-                    <input type="lastname" class="form-control" id="lastname" ng-model="user.lastname" placeholder="Lastname">
-                  </div>
-                                      <div class="form-group">
-                    <label for="firstname">Firstname</label>
-                    <input type="firstname" class="form-control" id="firstname" ng-model="user.firstname" placeholder="Firstname">
-                  </div>
-                  <button type="submit" class="btn btn-default" ng-click="createUser()" >Submit</button>
-                </form>
-              </div>
-          </div>
+    <div class="row">
+        <div class="box">
+            <div class="col-lg-12">
+                <hr>
+                <h2 class="intro-text text-center">We want <strong>you</strong> to help - Register</h2>
+                <hr>
+                <p class="center">After registering you will be automatically logged in to our service and you will be able to start searching.</p>
+                <div class="container">
+                    <div class="row">
+                        <div class="login jumbotron center-block">
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control" ng-model="user.email" id="email" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" ng-model="user.password" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastname">Lastname</label>
+                                    <input type="lastname" class="form-control" id="lastname" ng-model="user.lastname" placeholder="Lastname">
+                                </div>
+                                <div class="form-group">
+                                    <label for="firstname">Firstname</label>
+                                    <input type="firstname" class="form-control" id="firstname" ng-model="user.firstname" placeholder="Firstname">
+                                </div>
+                                <button type="submit" class="btn btn-default" ng-click="createUser()" >Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-
 </div>
-<!-- /.container -->
