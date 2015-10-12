@@ -104,33 +104,44 @@ var app = angular.module('pplibdataanalyzer_frontend.search', [
             // Event handlers
             $scope.editValue = 2;
             $scope.onEditChange = function () {
-                $rootScope.changeHandler($scope.editValue, $scope.radioValue);
+                $rootScope.changeHandler($scope.editValue, '', $scope.radioValue);
+            };
+            
+            // Checkbox change
+            $scope.onCheckBoxChange = function () {
+                var test = 2;
+                if ($scope.check1Selected) {
+                    test = 3;
+                }
+                $rootScope.changeHandler('', test, '');
             };
 
+            // Radio changes
             $scope.onRadioChange = function () {
-
-                $rootScope.changeHandler($scope.editValue, $scope.radioValue);
+                $rootScope.changeHandler($scope.editValue, '', $scope.radioValue);
             };
 
-
-            $rootScope.changeHandler = function (scale, style) {
-                $scope.radioValue = style;
+            // 3 to test functions, test is for scale, test2 not used right now, test3 is for style
+            $rootScope.changeHandler = function (test, test2, test3) {
+                $scope.radioValue = test3;
                 //var image = "588017567101026437";
-                if (!scale) {
-                    scale = 1;
+                if (!test) {
+                    test = 1;
                 }
 
-                if (style === "normal") {
-                    style = "crosshair/";
+                if (test3 === "normal") {
+                    test3 = "crosshair/";
                 } else {
-                    style = style + "/";
+                    test3 = test3 + "/";
                 }
-                $scope.onEditChangeResult = "/images/" + scale + "/" + style + $rootScope.image + ".png";
-                // Lightbox starter
+                $scope.onEditChangeResult = "/images/" + test + "/" + test3 + $rootScope.image + ".png";
+
                 $rootScope.openLightboxModal = function (images) {
-                    Lightbox.openModal(images, scale - 1);
+
+                    Lightbox.openModal(images, test - 1);
                 };
             };
+
 
             // submit function
             $scope.submit = function () {
