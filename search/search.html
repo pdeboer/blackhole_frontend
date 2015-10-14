@@ -1,6 +1,6 @@
 <div class="container">
     <div class="joyRide" ng-controller="introCtrl" ng-hide="dismiss">
-        <div class="hide" ng-joy-ride="startJoyRide" config="config" on-finish="onFinish()" on-skip="onFinish()"></div>
+        <div class="hide" on-finish="onFinish()" on-skip="onFinish()"></div>
         <div style="font-size:22px;" class="alert alert-danger" role="alert">
             <button type="button" ng-click="dismissBanner()" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></span>
             </button>
