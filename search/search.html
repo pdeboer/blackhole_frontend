@@ -10,9 +10,9 @@
     </div>
 
     <div class="row">
-        <div class="box">
+        <div class="box row">
 
-            <div class="col-lg-12">
+            <div class="col-sm-12">
                 <hr>
                 <h2 class="intro-text text-center">Start <strong>Searching</strong></h2>
                 <hr>
@@ -20,25 +20,14 @@
 
             <div ng-app="search">
                 <div ng-controller="SearchCtrl">
-                    <div class="col-lg-6" id="picture">
-                        <a href="#" ng-click="openLightboxModal(images)"><img class="imagedropshadow" style="max-width: 600px; width: 100%;" err-SRC="/images/nodata.png" ng-src="{{onEditChangeResult}}" /></a>
+                    <div class="col-sm-12 col-sm-offset-0 col-lg-6 col-lg-offset-3" id="picture" style="text-align: center;">
+                        <a href="#" ng-click="switchPic()"><img class="imagedropshadow" style="max-width: 600px; width: 100%;" err-SRC="/images/nodata.png" ng-src="{{onEditChangeResult}}" /></a>
                         <br /><br />
-                        <!--<img class="imagedropshadow" style="max-width: 600px; width: 100%;" ng-src="{{radioImage}}" err-SRC="/images/noradio.png" /> -->
-                        <div>
-                            <h4>Informations about this Image:</h4>
-                                <ul>
-                                    <li><p style="margin-bottom: 0px;">RA: {{coordinateRa|limitTo:14}}</p></li>
-                                    <li><p>DEC: {{coordinateDec|limitTo:14}}</p></li>
-                                </ul>
-                            <h4>Your progress so far in this search:</h4>
-                                <ul>
-                                    <li><p>Completed Images: {{completedImages}} / 100 ({{completedImages}}%)</p></li>
-                                </ul>
-                        </div>
-                    </div> 
-                    <div class="col-lg-6">
                         <div id="task" class="question dropshadowclass" style="text-align: center;" ng-include src="template.url">
                         </div>
+                    </div>
+                    <div class="col-sm-12 col-sm-offset-0 col-lg-6 col-lg-offset-3">
+
                         <br />
                         <br />
                         <div class="tools dropshadowclass" style="text-align: center; font-size: 1.5em">
@@ -57,9 +46,8 @@
                                         <option value="7">7</option>
                                         <option value="8">8</option>
                                     </datalist>
-                                </div>
+                                </div><br />
                                 <!--
-<label>Check1:<input type="checkbox" ng-model="check1Selected" ng-change="onCheckBoxChange()" /></label>!-->
                                 <div id="tools_style">
                                     <label>
                                         <input type="radio" ng-model="radioValue" value="normal" ng-change="onRadioChange()" /> normal</label>
@@ -115,7 +103,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>                                
+                                </div>
                                 <br />
                             </div>
 
@@ -123,53 +111,6 @@
 
                         <div id="finish" class="clearfix"></div>
                     </div>
-                        <br />
-                        <br />
-                        <div id="tools_spectra" class="tools dropshadowclass" style="text-align: center; font-size: 1.5em">
-                            <p>List of Spectras:</p>
-                            <div class="table-responsive">          
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th class="centered">RA</th>
-                              <th class="centered">DEC</th>
-                              <th class="centered">SPECTRA</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                              <tr ng-repeat="spectra in spectras">
-                                  <td>{{spectra.ra}}</td>
-                                  <td>{{spectra.dec}}</td>
-                                  <td><button id="tools_spectra_click" ng-click="toggle(spectra.specobjid)" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#seeSpectra">See Spectra</button></td>
-                              </tr>
-                          </tbody>
-                        </table>
-                        </div>
-                        <div class="modal fade" id="seeSpectra" tabindex="-1" role="dialog" aria-labelledby="seeSpectraLabel">
-                                    <div class="modal-dialog" role="document" style="width: 1200px;">
-                                        <div class="modal-content" style="width: 1200px;">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="rateGalaxyLabel">See Spectra in detail:</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <img class="imagedropshadow" ng-src="{{currentSpectra}}" />
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>                                
-                                <br />
-                            </div>
 
-                        <div id="finish" class="clearfix"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
 
     <!-- /.container -->

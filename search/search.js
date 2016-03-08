@@ -96,9 +96,8 @@ var app = angular.module('pplibdataanalyzer_frontend.search', [
 
 // search controller
         .controller('SearchCtrl', function SearchController($scope, $rootScope, $http, store, jwtHelper, $state, $location, Lightbox) {
-
             $scope.toggle = function (spectraId) {
-                $scope.currentSpectra = "/images/spectra/" + spectraId + ".png";
+                $scope.currentSpectra = "/images/spectra_new/" + spectraId + "_" + $rootScope.spectraNr +  ".png";
             };
 
             // Event handlers
@@ -121,6 +120,29 @@ var app = angular.module('pplibdataanalyzer_frontend.search', [
                 $rootScope.changeHandler($scope.editValue, '', $scope.radioValue);
             };
 
+            $scope.toggled = 0;
+            $scope.switchPic = function () {
+
+                if($scope.questionId == 4) {
+                    if($scope.toggled) {
+                        $rootScope.changeHandler($scope.editValue, '', 'xray');
+                        $scope.toggled = 0;
+                    } else {
+                        $rootScope.changeHandler($scope.editValue, '', 'small');
+                        $scope.toggled = 1;
+                    }
+                } else if($scope.questionId == 5) {
+                    if($scope.toggled) {
+                        $rootScope.changeHandler($scope.editValue, '', 'radio');
+                        $scope.toggled = 0;
+                    } else {
+                        $rootScope.changeHandler($scope.editValue, '', 'small');
+                        $scope.toggled = 1;
+                    }
+                }
+
+            }
+
             // 3 to test functions, test is for scale, test2 not used right now, test3 is for style
             $rootScope.changeHandler = function (test, test2, test3) {
                 $scope.radioValue = test3;
@@ -129,12 +151,21 @@ var app = angular.module('pplibdataanalyzer_frontend.search', [
                     test = 1;
                 }
 
+                test = test + "/";
+
+                var suffix = "";
                 if (test3 === "normal") {
-                    test3 = "crosshair/";
+                    test3 = "small/";
+                } else if (test3 === "spectra") {
+                    test3 = "spectra_new/";
+                    test = "";
+                    if($scope.spectraCount != 0) {
+                        suffix = "_" + $rootScope.spectraNr;
+                    }
                 } else {
                     test3 = test3 + "/";
                 }
-                $scope.onEditChangeResult = "/images/" + test + "/" + test3 + $rootScope.image + ".png";
+                $scope.onEditChangeResult = "/images/" + test + test3 + $rootScope.image + suffix + ".png";
 
                 $rootScope.openLightboxModal = function (images) {
 
@@ -145,13 +176,16 @@ var app = angular.module('pplibdataanalyzer_frontend.search', [
 
             // submit function
             $scope.submit = function () {
+                console.log(this)
                 var msg = {
                     uuid: store.get('jwt'),
                     sdss_id: this.coordinatesId,
                     question_id: parseInt(this.questionId),
+                    spectra_id: parseInt(this.spectraId),
                     answer: this.quest,
                     ip: this.ipAdress
                 };
+                console.log(msg);
                 //console.log(angular.toJson(msg));
                 $http.post('/tasklog', angular.toJson(msg)).
                         success(function (data, status, headers, config) {
@@ -209,11 +243,16 @@ var app = angular.module('pplibdataanalyzer_frontend.search', [
                 ip: $scope.ipAdress
             }).
                     success(function (data, status, headers, config) {
-
                         if (data == "All tasks are done") {
                             alert("Congratulations, all tasks are done!");
                         }
+
+
+                console.log(data);
                         $scope.action = data;
+                        $rootScope.spectraNr = parseInt(data.return[0].spectra_nr) - 1 ;
+                        $scope.spectraId = data.return[0].spectra_nr;
+                        $scope.spectraCount = data.debug[0].nrOfSpectras;
 
                         // iframe
                         $scope.sdssUrl = "http://skyserver.sdss.org/dr7/en/tools/explore/obj.asp?ra=" + data.return[0].ra + "&dec=" + data.return[0].dec;
@@ -228,7 +267,7 @@ var app = angular.module('pplibdataanalyzer_frontend.search', [
 
                         $rootScope.image = data.return[0].sdss_id;
                         $rootScope.imageUrl =
-                                $scope.onEditChangeResult = "/images/2/crosshair/" + $rootScope.image + ".png";
+                                $scope.onEditChangeResult = "/images/2/small/" + $rootScope.image + ".png";
                         $scope.radioImage = "/images/radio/" + $rootScope.image + ".png";
                         $scope.question = data.return[0].question;
 
@@ -361,30 +400,6 @@ var app = angular.module('pplibdataanalyzer_frontend.search', [
                     selector: "#tools_zoom",
                     heading: "Tools - Zoom",
                     text: "With this slider you can zoom-in and zoom-out the Galaxy-Image.",
-                    placement: "left",
-                    scroll: true,
-                    elementTemplate: elementTourTemplate,
-                }, {
-                    type: "element",
-                    selector: "#tools_style",
-                    heading: "Tools - Style",
-                    text: "To have a deeper insight in the Galaxy-Image, you can select a display style here which may offers you more details about the actual Galaxy-Image.",
-                    placement: "left",
-                    scroll: true,
-                    elementTemplate: elementTourTemplate,
-                }, {
-                    type: "element",
-                    selector: "#tools_spectra",
-                    heading: "Tools - Spectra",
-                    text: "If you have to define 'broad spikes' please have a look at the spectras here which will show you the according diagram. The topmost Spectra is always the one most centered to the Galaxy-Image.",
-                    placement: "left",
-                    scroll: true,
-                    elementTemplate: elementTourTemplate,
-                }, {
-                    type: "element",
-                    selector: "#tools_spectra_click",
-                    heading: "Tools - Spectra(2)",
-                    text: "By clicking here you will see the spectra.",
                     placement: "left",
                     scroll: true,
                     elementTemplate: elementTourTemplate,
