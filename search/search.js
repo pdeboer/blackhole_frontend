@@ -31,7 +31,7 @@ var app = angular.module('pplibdataanalyzer_frontend.search', [
                 controller: 'initCtrl',
                 templateUrl: 'search/search.html',
                 data: {
-                    requiresLogin: false
+                    requiresLogin: true
                 }
             });
         })
