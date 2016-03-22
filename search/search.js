@@ -178,7 +178,7 @@ var app = angular.module('pplibdataanalyzer_frontend.search', [
             $scope.submit = function () {
                 var msg = {
                     uuid: store.get('jwt'),
-                    set: this.set,
+                    set: this.setId,
                     sdss_id: this.coordinatesId,
                     question_id: parseInt(this.questionId),
                     spectra_id: parseInt(this.spectraId),
@@ -186,6 +186,7 @@ var app = angular.module('pplibdataanalyzer_frontend.search', [
                     ip: this.ipAdress
                 };
                 //console.log(angular.toJson(msg));
+                
                 $http.post('/tasklog', angular.toJson(msg)).
                         success(function (data, status, headers, config) {
                             // this callback will be called asynchronously
@@ -246,8 +247,6 @@ var app = angular.module('pplibdataanalyzer_frontend.search', [
                             alert("Congratulations, all tasks are done!");
                         }
 
-
-                console.log(data);
                         $scope.action = data;
                         $rootScope.spectraNr = parseInt(data.return[0].spectra_nr) - 1 ;
                         $scope.spectraId = data.return[0].spectra_nr;
@@ -271,6 +270,9 @@ var app = angular.module('pplibdataanalyzer_frontend.search', [
                         $scope.question = data.return[0].question;
 
                         $scope.spectras = data.return[0].spectras;
+
+                        $scope.setId = data.return[0].set;
+                        $rootScope.setId = data.return[0].set;
 
                         $scope.coordinatesId = data.return[0].sdss_id;
                         $rootScope.coordinatesId = data.return[0].sdss_id;
