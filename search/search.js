@@ -176,16 +176,15 @@ var app = angular.module('pplibdataanalyzer_frontend.search', [
 
             // submit function
             $scope.submit = function () {
-                console.log(this)
                 var msg = {
                     uuid: store.get('jwt'),
+                    set: this.set,
                     sdss_id: this.coordinatesId,
                     question_id: parseInt(this.questionId),
                     spectra_id: parseInt(this.spectraId),
                     answer: this.quest,
                     ip: this.ipAdress
                 };
-                console.log(msg);
                 //console.log(angular.toJson(msg));
                 $http.post('/tasklog', angular.toJson(msg)).
                         success(function (data, status, headers, config) {
